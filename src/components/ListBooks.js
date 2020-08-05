@@ -7,13 +7,18 @@ class ListBooks extends Component {
   //       dan isLoading dengan nilai default false
   state = {
     // isi disini
+    books:[],
+    isLoading:false
+    
   };
 
   componentDidMount() {
     const context = this
-    this.setState({isLoading: true}, () =>
     // TODO: Panggil API dengan method GET untuk mendapat semua data yang terdapat pada database.
     // isi disini
+    this.setState({isLoading: true}, () =>
+    axios
+    .get("https://shielded-basin-94184.herokuapp.com/library")
     .then(res =>{
       console.log(res);
       context.setState({
@@ -32,7 +37,10 @@ class ListBooks extends Component {
           {this.state.isLoading? <div>Lagi loading...</div>:
           // TODO: Panggil component BOOKS dengan membawa state books sebagai props books
           // isi disini
-        }
+          <Books
+          books={this.state.books}
+          />
+          }
         </div>{" "}
       </div>
     );
@@ -40,3 +48,4 @@ class ListBooks extends Component {
 }
 
 export default ListBooks;
+//sksksk
